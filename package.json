@@ -1,0 +1,24 @@
+{
+  "name": "2021-05-rosalbadif",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rosalbadif/2021-05-rosalbadif.git"
+  },
+  "author": "Rosalba Difonzo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rosalbadif/2021-05-rosalbadif/issues"
+  },
+  "homepage": "https://github.com/rosalbadif/2021-05-rosalbadif#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.4.0"
+  }
+}
