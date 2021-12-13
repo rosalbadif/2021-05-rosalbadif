@@ -23,17 +23,30 @@ io.on("connection", newConnection) //when you see a new "CONNECTION" (standard n
 function newConnection(newSocket) { //passes a data file containing all the information about the connection called newSocket
    console.log("newSocket: " + newSocket.id) //gives back the id of every user accessing the server
    
-   //var colors = ["lime", "dodgerBlue", "orangeRed", "deepPink"]
-   //let clientColor = color (random(colors))
-
-   //serverSocket.Socket.emit ("color", clientColor)
-   serverSocket.Socket.broadcast.emit("nerUser", clientColor)
+   //assign client a color
+   let clientColor = getRandomColor
+   serverSocket.emit ("color", clientColor)
 
    newSocket.on("mouse", mouseMessage) //to send the information from the client to the server
+   newSocket.on("username", usernameMessage)
+
+    function usernameMessage (dataReceived){
+       console.log(newSocket.id)
+       newSocket.broadcast.emit("mouseBroadcast", dataReceived)
+   }
 
     function mouseMessage(dataReceived){
         console.log(dataReceived)
         newSocket.broadcast.emit("mouseBroadcast", dataReceived) //to send back the information from the server to all the other clients
     }
  }
- 
+ //DEFINE RANDOM COLOR
+ function getRandomColor() {
+    var letters = "0123456789ABCDEF";
+    var color = "#";
+    for(var i=0; i<6; i++) {
+        color += letters[Math.floor(Math.random()*16)];
+      }
+    return color;
+   
+}
