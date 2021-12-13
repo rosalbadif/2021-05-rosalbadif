@@ -14,7 +14,7 @@ let myUsers =[]
 
 const urlString = window.location.href;
 const url = new URL(urlString);
-let userParameter = url.searchParams.get("currentUser");
+let userParameter = url.searchParams.get("person");
 
 //get username
 //let userParameter

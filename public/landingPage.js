@@ -46,6 +46,8 @@ function draw (){
   
   
   function go(){
-  
-      window.open(url + "sketch.html?currentUser=" + person, "_self")
+    if (person != ""){
+
+      window.open(url + "/sketch.html?currentUser=" + person, "_self")
+  }
   }
