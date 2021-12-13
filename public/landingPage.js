@@ -26,13 +26,14 @@ function setup() {
 
 function draw (){
     background("white")
-  
+    person=input.value()
+
     noStroke()
     textAlign(CENTER)
     textSize(100)
     fill("orange")
     textFont ("dongle")
-    text ("hello"+ person, windowWidth/2, 100)
+    text ("hello "+ person, windowWidth/2, 100)
   
     textSize(30)
     text("let's get a shopping list", windowWidth/2, 400)
@@ -40,7 +41,7 @@ function draw (){
     // textSize(50)
     // text(input.value(), windowWidth/2, 430 )
   
-    person=input.value()
+    
   }
   
   
