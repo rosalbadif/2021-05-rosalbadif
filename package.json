@@ -1,7 +1,7 @@
 {
-  "name": "2021-05-rosalbadif",
+  "name": "senza-nome",
   "version": "1.0.0",
-  "description": "",
+  "description": "Bootstrapped project using node and p5",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,16 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rosalbadif/2021-05-rosalbadif.git"
+    "url": "git+https://github.com/drawwithcode/2021-05-rosalbadif.git"
   },
-  "author": "Rosalba Difonzo",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rosalbadif/2021-05-rosalbadif/issues"
+    "url": "https://github.com/drawwithcode/2021-05-rosalbadif/issues"
   },
-  "homepage": "https://github.com/rosalbadif/2021-05-rosalbadif#readme",
+  "homepage": "https://github.com/drawwithcode/2021-05-rosalbadif#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "socket.io": "^4.4.0"
+    "express": "^4.17.2",
+    "socket.io": "^4.4.1"
   }
 }

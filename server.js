@@ -1,52 +1,47 @@
-//will contain all the information that will run on our server 
-console.log("up and running")
+console.log("hello world!");
 
-let express = require("express") //loaded express library
-let app= express() //activated express
+const { Socket } = require("engine.io");
+// load express
+let express = require("express");
 
-//port thet we will use
-let port = 3000
-//let port = process.env.PORT || 3000; //run it on the heroku port OR on 3000
-let server = app.listen(port)
+// create an app
+let app = express();
 
-console.log("Server is running on http://localhost:" + port)
+// define the port where client files will be provided
+let port = process.env.PORT || 3000;
 
-app.use(express.static("public")) //all the file in the folder won't change over time 
+// start to listen to that port
+let server = app.listen(port);
 
-let serverSocket = require("socket.io")
+// print the link in the terminal
+console.log("running server on http://localhost:" + port);
 
-//we have to tell socket what server we are using 
-let io = serverSocket(server) //already called the server in the line 10
-io.on("connection", newConnection) //when you see a new "CONNECTION" (standard name) run the newConnection function
+// provide static access to the files
+// in the "public" folder
+app.use(express.static("public"));
 
-// CLIENT CONNECTING TO OUR SERVER:
-function newConnection(newSocket) { //passes a data file containing all the information about the connection called newSocket
-   console.log("newSocket: " + newSocket.id) //gives back the id of every user accessing the server
-   
-   //assign client a color
-   let clientColor = getRandomColor
-   serverSocket.emit ("color", clientColor)
+// load socket library
+let serverSocket = require("socket.io");
 
-   newSocket.on("mouse", mouseMessage) //to send the information from the client to the server
-   newSocket.on("username", usernameMessage)
+// create a socket connection
+let io = serverSocket(server);
 
-    function usernameMessage (dataReceived){
-       console.log(newSocket.id)
-       newSocket.broadcast.emit("mouseBroadcast", dataReceived)
-   }
+// define which function should be called
+// when a new connection is opened from client
+io.on("connection", newConnection);
 
-    function mouseMessage(dataReceived){
-        console.log(dataReceived)
-        newSocket.broadcast.emit("mouseBroadcast", dataReceived) //to send back the information from the server to all the other clients
-    }
- }
- //DEFINE RANDOM COLOR
- function getRandomColor() {
-    var letters = "0123456789ABCDEF";
-    var color = "#";
-    for(var i=0; i<6; i++) {
-        color += letters[Math.floor(Math.random()*16)];
-      }
-    return color;
-   
+// callback function: the paramenter (in this case socket)
+// will contain all the information on the new connection
+function newConnection(newSocket) {
+  // log the connection in terminal
+  console.log("new connection:", newSocket.id);
+
+  // tell to all the others that a new user connected
+  newSocket.on("mouse", incomingMouseMessage);
+
+  // callback function run when the "mouse" message is received
+  function incomingMouseMessage(dataReceived) {
+    // send it to all the clients
+    newSocket.broadcast.emit("mouseBroadcast", dataReceived);
+  }
 }
